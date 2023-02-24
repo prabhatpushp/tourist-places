@@ -1,0 +1,91 @@
+﻿@model TravelPlaces.Models.TouristPlace
+
+<div class="panel" style="margin-bottom: 100px;">
+<div class="panel_img">
+        @if (Model.PlaceImages.Count() > 0)
+        {
+            @foreach (var item in Model.PlaceImages)
+            {
+                    <img
+                    src="@item.ImageUrl"
+                    alt="Place cover"
+                    style="margin: 5px 0;"
+                    />
+            }
+        }
+        else
+        {
+                    <img
+                    src="https://raw.githubusercontent.com/prabhatpushp/project-related/main/TravelPlaces/images/gatewayofindia%20(1).jpg"
+                    alt="Place cover"
+                    />
+        }
+</div>
+
+<div class="panel_content">
+    <div class="panel_top" style="width: fit-content; border: 1px solid #eaeaea; border-radius: 2px; padding-left: 15px;">
+    <span>@Model.City,</span>
+    <span>@Model.State,</span>
+    <span>@Model.Country</span>
+    <span style="padding:5px 10px 5px 15px; width: fit-content; display: inline-block; background-color: #fafafa; margin-left: 20px; font-weight: 700; font-size: 1rem; border-left: 1px solid #eaeaea;">@Model.PlaceRating ⭐</span>
+    </div>
+
+    <h1>@Model.Name</h1>
+    <p>
+            @Model.Description
+    </p>
+        @if (Model.Providers.Any())
+        {
+                                <div class="providers-container">
+                                    <h2 style="margin-bottom: 10px; font-size: 1.2rem; font-weight: 500;">Service Providers</h2>
+                                <table class="table table-bordered">
+                                <thead class="mytableheading">
+                                    <tr>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Phone
+                                        </th>
+                                        <th>
+                                            Service
+                                        </th>
+                                        <th>
+                                            Ratings
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                        @foreach (var item in Model.Providers)
+                        {
+                                                                <tr>
+                                                                    <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                                                    </td>
+                                                                    <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                                                    </td>
+                                                                    <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                                                    </td>
+                                                                    <td>
+                                    @Html.DisplayFor(modelItem => item.ProviderType)
+                                                                    </td>
+                                                                    <td>
+                                    @Html.DisplayFor(modelItem => item.ProviderRating)
+                                                                    </td>
+                                                                </tr>
+                        }
+                                </tbody>
+                            </table>
+
+                                </div>
+
+        }else{
+            <p>No Service Provider Available</p>
+        }
+</div>
+</div>

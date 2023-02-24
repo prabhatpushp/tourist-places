@@ -1,0 +1,32 @@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<ul class="navbar-nav">
+    @{
+        ViewBag.Data = @HttpContextAccessor.HttpContext.Session.GetString("username");
+    }
+    @if (ViewBag.Data != null)
+    {
+        <div class="navbar-nav ms-lg-4">
+                        <p class="nav-item nav-link">Hello @ViewBag.Data!</p>
+                    </div>
+        <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
+            <form>
+                        <button id="logout" type="submit" class="btn btn-sm btn-white w-full w-lg-auto" asp-area="" asp-controller="Login" asp-action="Logout">
+                            Logout
+                        </button>
+                        </form>
+                    </div>
+    }
+    else
+    {
+                    <div class="navbar-nav ms-lg-4">
+                        <a class="nav-item nav-link" asp-area="" asp-controller="Login" asp-action="Login">Sign in</a>
+                    </div>
+                    <div class="d-flex align-items-lg-center mt-3 mt-lg-0">
+                        <a class="btn btn-sm btn-white w-full w-lg-auto" asp-area="" asp-controller="Login" asp-action="Register">
+                            Register
+                        </a>
+                    </div>
+    }
+</ul>

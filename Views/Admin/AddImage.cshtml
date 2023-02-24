@@ -1,0 +1,50 @@
+@model TravelPlaces.Models.PlaceImage
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h1>Add Image</h1>
+
+<h4>Place Image</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        @if (ViewBag.SuccessMessage != null)
+        {
+                <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+        }
+        @if (ViewBag.ErrorMessage != null)
+        {
+                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+        }
+        <form asp-action="AddImage">
+            <div class="form-group">
+                <label asp-for="PlaceId" class="control-label"></label>
+                <select asp-for="PlaceId"class="form-control" asp-items="@ViewBag.TouristPlacesList">
+                    <option value="" >--- Select Place ---</option>
+                </select>
+                <span asp-validation-for="PlaceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

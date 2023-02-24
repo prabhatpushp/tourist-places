@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TravelPlaces.Models.TouristPlace>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="place-grid">
+@foreach (var item in Model)
+{
+<a class="place-card" asp-action="Place" asp-controller="Home" asp-route-id="@item.PlaceId">
+<div class="place-card__cover">
+    @if (item.PlaceImages.Count() > 0)
+    {
+        <img
+        src="@item.PlaceImages.First().ImageUrl"
+        alt="Place cover"
+        />
+    }else
+    {
+        <img
+        src="https://raw.githubusercontent.com/prabhatpushp/project-related/main/TravelPlaces/images/gatewayofindia%20(1).jpg"
+        alt="Place cover"
+        />
+    }
+    <div class="place-content">
+    <div class="title">@item.Name</div>
+    <div class="content-container">
+        <div class="address">@item.City, @item.State</div>
+        <div class="ratings">@item.PlaceRating⭐</div>
+    </div>
+    </div>
+</div>
+</a>
+}
+</div>

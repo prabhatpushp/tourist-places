@@ -1,0 +1,46 @@
+@model IEnumerable<TravelPlaces.Models.PlaceImage>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Images</h1>
+
+<p>
+    <a asp-action="AddImage">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlaceId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlaceId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditImage", new { id=item.ImageId }) |
+                @Html.ActionLink("Details", "DetailsImage", new { id=item.ImageId }) |
+                @Html.ActionLink("Delete", "DeleteImage", new { id=item.ImageId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

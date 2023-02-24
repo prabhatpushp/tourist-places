@@ -1,0 +1,60 @@
+@model TravelPlaces.Models.ServiceProvider
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Create Provider</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @if (ViewBag.SuccessMessage != null)
+        {
+                <div class="alert alert-success">@ViewBag.SuccessMessage</div>
+        }
+        @if (ViewBag.ErrorMessage != null)
+        {
+                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+        }
+        <form asp-action="CreateProvider">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" type="text" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" type="email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" type="number" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProviderType" class="control-label"></label>
+                <input asp-for="ProviderType" type="text" class="form-control" />
+                <span asp-validation-for="ProviderType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProviderRating" class="control-label"></label>
+                <input asp-for="ProviderRating" type="number" class="form-control" />
+                <span asp-validation-for="ProviderRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" type="submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

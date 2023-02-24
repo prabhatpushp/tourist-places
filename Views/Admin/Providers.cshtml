@@ -1,0 +1,64 @@
+@model IEnumerable<TravelPlaces.Models.ServiceProvider>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Providers</h1>
+
+<p>
+    <a asp-action="CreateProvider">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProviderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProviderType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProviderRating)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProviderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProviderType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProviderRating)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditProvider", new { id=item.ProviderId }) |
+                @Html.ActionLink("Details", "DetailsProvider", new { id=item.ProviderId }) |
+                @Html.ActionLink("Delete", "DeleteProvider", new { id=item.ProviderId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
